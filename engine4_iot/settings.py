@@ -55,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'engine4_iot.urls'
+LOGIN_REDIRECT_URL = 'viewer/'
+LOGOUT_REDIRECT_URL = 'viewer/'
 
 TEMPLATES = [
     {

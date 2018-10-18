@@ -1,8 +1,9 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
-#@login_reqired
+@login_required
 def index(request):
 
     current_user = request.user
