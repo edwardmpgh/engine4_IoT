@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    #'crispy_forms',
     'rest_framework',
     'controller',
     'device',
@@ -55,6 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'engine4_iot.urls'
+LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = 'viewer/'
 LOGOUT_REDIRECT_URL = 'viewer/'
 
@@ -128,6 +129,9 @@ DATE_INPUT_FORMATS = ['%d/%m/%Y']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+#STATIC_ROOT = BASE_DIR + '/static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = ( os.path.join('static'), )
+
 
 

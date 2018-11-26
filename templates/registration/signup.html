@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block head-extra %}
+    <link rel="stylesheet" href="/static/css/login_custom.css">
+{% endblock head-extra %}
+{% block content %}
+    <div id="fullscreen_bg" class="fullscreen_bg"/>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <h1 class="display-3">Welcome to Engine4 IoT</h1>
+            <div class="info-form">
+                <form action="" class="form justify-content-center" action="?next={{ redirect_to }}" method="post">
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    <button type="submit" class="btn btn-success">Create</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+{% endblock %}

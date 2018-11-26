@@ -1,0 +1,25 @@
+/* CSS used here will be applied after bootstrap.css */
+
+body, html {
+    height: 100%;
+    background-color: #76b852;
+}
+.fullscreen_bg {
+    /* The image used */
+    background-image: url('/static/images/login_background_3.jpg');
+
+    /* Full height */
+    height: auto;
+    max-width: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+}
