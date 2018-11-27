@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head-extra %}{% endblock head-extra %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-2">{%  include 'viewer/sidebar.html' %}</div>
+        <div class="col-sm-10">
+            {% for sensor in sensors %}
+                sensor
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

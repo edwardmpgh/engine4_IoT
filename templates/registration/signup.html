@@ -12,7 +12,6 @@
                 <form action="" class="form justify-content-center" action="?next={{ redirect_to }}" method="post">
                     {% csrf_token %}
                     {{ user_form.as_p }}
-                    {{ profile_form.as_p }}
                     <button type="submit" class="btn btn-success">Create</button>
                 </form>
             </div>

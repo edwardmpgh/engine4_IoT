@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from engine4_iot import settings
 from .forms import UserForm, ProfileForm
+from controller.models import Device, Sensor, SensorType, Event
 
 
 # Authentication Functions
@@ -36,32 +37,24 @@ def signup(request):
 
     # set the user and profile forms
     user_form = UserForm(request.POST or None)
-    profile_form = ProfileForm(request.POST or None)
 
     # check if the request is a post form the form
     if request.method == 'POST':
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             # save the user and profile information to the database
             user = user_form.save()
             # set the user password
             user.set_password(user.password)
             user.save()
-            # save the user profile
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
+
             # login the user
-            username = user_form.cleaned_data.get('username')
-            pw = user_form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=pw)
-            login(request, user)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             # send them to the home page
             return HttpResponseRedirect(reverse('viewer_index'))
 
     # render the signup page
     context = dict(
         user_form=user_form,
-        profile_form=profile_form,
     )
     return render(request, 'registration/signup.html', context)
 
@@ -72,7 +65,17 @@ def index(request):
 
     current_user = request.user
 
-    return HttpResponse('Hi')
+    context = dict(
+        fullname=current_user.first_name + ' ' + current_user.last_name,
+    )
+
+    # get the user's list of sensors
+    devices = Device.objects.filter(user=current_user, active=True, trash=False)
+    sensors = Sensor.objects.filter(device__in=devices).order_by('device__location')
+
+    context['sensors'] = sensors
+
+    return render(request, 'viewer/index.html', context)
 
 
 def change_setting(request):

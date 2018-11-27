@@ -51,7 +51,7 @@ class Profile(CommonField):
         return self.user.email
 
     class Meta:
-        db_table = DB_PREFIX + 'profile'
+        db_table = DB_PREFIX + 'user_profile'
 
 
 # # Create or update profile when user instance is created or updated
@@ -70,32 +70,50 @@ class Device(CommonField):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=128, blank=True, null=True)
 
+    def __str__(self):
+        return '%s: %s' % (self.user.username, self.name)
 
-SENSOR_DATA_TYPES = (
-    ('i', 'integer'),
-    ('f', 'float'),
-    ('b', 'boolean'),
-    ('s', 'string'),
-)
+    class Meta:
+        db_table = DB_PREFIX + 'device'
 
 
 class SensorType(CommonField):
     name = models.CharField(max_length=50)
-    data_type = models.CharField(max_length=1, choices=SENSOR_DATA_TYPES)
+    alert_low = models.FloatField(blank=True, null=True)
+    alert_high = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = DB_PREFIX + 'sensor_type'
 
 
 class Sensor(CommonField):
     name = models.CharField(max_length=50)
     type = models.ForeignKey(SensorType, on_delete=models.CASCADE)
-
-
-class Channel(CommonField):
+    alert = models.BooleanField(default=False)
+    last_alert_value = models.FloatField(blank=True, null=True)
+    last_alert = models.DateField(blank=True, null=True)
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '%s: %s' % (self.device.name, self.name)
+
+    class Meta:
+        db_table = DB_PREFIX + 'sensor'
 
 
 class Event(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    channel = models.ForeignKey(Channel, on_delete=models.DO_NOTHING)
-    value = models.CharField(max_length=15)
+    value = models.FloatField()
+    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
+    event_type = models.CharField(max_length=5)
+
+    def __str__(self):
+        return '%s: %s' % (self.created, self.sensor.name)
+
+    class Meta:
+        db_table = DB_PREFIX + 'event'
