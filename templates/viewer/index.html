@@ -2,14 +2,68 @@
 {% load staticfiles %}
 {% block head-extra %}{% endblock head-extra %}
 {% block content %}
+    <script src={% static 'js/kuma-gauge.jquery.min.js' %}></script>
+
     <div class="row">
         <div class="col-sm-2">{%  include 'viewer/sidebar.html' %}</div>
         <div class="col-sm-10">
+            <div class="d-flex align-content-stretch flex-wrap">
             {% for sensor in sensors %}
-                sensor
+                <div class="card" style="width: 15rem;">
+                    <div class="d-flex justify-content-center card-img-top js-gauge demo{{ sensor.id }} gauge"></div>
+                    <div class="card-body">
+                        {% if sensor.last_alert_value >= sensor.type.alert_low %}
+                            <h5 class="card-title bg-danger text-center">ALERT!</h5>
+                        {% endif %}
+                        <h5 class="card-title">{{ sensor.name }}</h5>
+                        <p class="card-text">{{ sensor.device.location }}</p>
+                        <a href="#" class="btn btn-primary">View</a>
+                    </div>
+                </div>
             {% endfor %}
-
+            </div>
         </div>
     </div>
 
+    {% for sensor in sensors %}
+        <script>
+            $('.demo{{ sensor.id }}').kumaGauge({
+                // dynamic value-up<a href="https://www.jqueryscript.net/time-clock/">date</a>. just for sample.
+                value : {{ sensor.last_alert_value }},
+                gaugeBackground : '#4484ce',
+                fill: '0-#1cb42f:0-#fdbe37:50-#fa4133:100', //'#',
+                //background : '#D9D9D9',
+                min: 0,
+                max: {{ sensor.type.alert_low }} * 1.5,
+                showNeedle : false,
+
+                valueLabel : {
+                    display : true,
+                    fontFamily : 'Arial',
+                    fontColor : '#000',
+                    fontSize : 20,
+                    fontWeight : 'normal',
+                },
+                title: {
+                    display: true,
+                    value: "{{ sensor.name }}",
+                    fontFamily : 'Arial',
+                    fontColor : '#000',
+                    fontSize : 20,
+                    fontWeight : 'normal',
+                },
+                label : {
+                    display : true,
+                    left : 'Low',
+                    right : 'High',
+                    fontFamily : 'Arial',
+                    fontColor : '#000',
+                    fontSize : 12,
+                    fontWeight : 'normal'
+                },
+
+
+            });
+        </script>
+    {% endfor %}
 {% endblock %}

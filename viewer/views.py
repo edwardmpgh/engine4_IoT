@@ -1,12 +1,23 @@
 from django.shortcuts import render, reverse
 from django.contrib.auth import login, authenticate, logout
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from engine4_iot import settings
 from .forms import UserForm, ProfileForm
 from controller.models import Device, Sensor, SensorType, Event
 
+# chart functions
+def chart_co(data):
+    pass
+
+
+def chart_co2(data):
+    pass
+
+
+def chart_smoke(data):
+    pass
 
 # Authentication Functions
 def login_base(request):
