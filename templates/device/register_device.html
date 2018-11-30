@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head-extra %}{% endblock head-extra %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="d-flex align-content-stretch flex-wrap">
+                <div class="card" style="width: 15rem;">
+                    <div class="d-flex justify-content-center card-img-top js-gauge demo{{ sensor.id }} gauge"></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Registration Code</h5>
+                        <p class="card-text">Log into the <a href="http://18.207.245.94:8000/controller">controller site</a>
+                            then click the "Add Device" button and enter this code:<br />
+                            <h1>{{ code }}</h1>
+                        </p>
+                        <a href="{% url 'device_index' %}" class="btn btn-primary">Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

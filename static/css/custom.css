@@ -21,70 +21,70 @@ body, html {
 
 /* navbar */
 .navbar-default {
-    background-color: #fff;
+    background-color: #4484ce;
     border-color: #4484ce;
 }
 /* Title */
 .navbar-default .navbar-brand {
-    color: #F19F4D;
+    color: #F9CF00;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #F19F4D;
+    color: #F9CF00;
 }
 /* Link */
 .navbar-default .navbar-nav > li > a {
-    color: #F19F4D;
+    color: #F9CF00;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #F19F4D;
+    color: #F9CF00;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #F19F4D;
-    background-color: #F19F4D;
+    color: #F9CF00;
+    background-color: #F9CF00;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-    color: #F19F4D;
-    background-color: #F19F4D;
+    color: #F9CF00;
+    background-color: #F9CF00;
 }
 /* Caret */
 .navbar-default .navbar-nav > .dropdown > a .caret {
-    border-top-color: #F19F4D;
-    border-bottom-color: #F19F4D;
+    border-top-color: #F9CF00;
+    border-bottom-color: #F9CF00;
 }
 .navbar-default .navbar-nav > .dropdown > a:hover .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
-    border-top-color: #F19F4D;
-    border-bottom-color: #F19F4D;
+    border-top-color: #F9CF00;
+    border-bottom-color: #F9CF00;
 }
 .navbar-default .navbar-nav > .open > a .caret,
 .navbar-default .navbar-nav > .open > a:hover .caret,
 .navbar-default .navbar-nav > .open > a:focus .caret {
-    border-top-color: #F19F4D;
-    border-bottom-color: #F19F4D;
+    border-top-color: #F9CF00;
+    border-bottom-color: #F9CF00;
 }
 /* Mobile version */
 .navbar-default .navbar-toggle {
-    border-color: #F19F4D;
+    border-color: #F9CF00;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: #F19F4D;
+    background-color: #F9CF00;
 }
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #F19F4D;
+    background-color: #F9CF00;
 }
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #F19F4D;
+        color: #F9CF00;
     }
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-          color: #F19F4D;
+          color: #F9CF00;
     }
 }

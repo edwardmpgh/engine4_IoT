@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('viewer/', include('viewer.urls')),
     path('controller/', include('controller.urls')),
+    path('device/', include('device.urls')),
 ]

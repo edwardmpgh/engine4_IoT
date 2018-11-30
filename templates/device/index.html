@@ -25,7 +25,7 @@
     </div>
 
     {% for sensor in sensors %}
-        {% if sensor.type.name == 'Temperature' %}
+        {% if sensor.type.name == 'Temperature Sensor' %}
             <script>
                 $('.demo{{ sensor.id }}').kumaGauge({
                     // dynamic value-up<a href="https://www.jqueryscript.net/time-clock/">date</a>. just for sample.
